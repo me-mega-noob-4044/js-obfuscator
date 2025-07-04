@@ -14,11 +14,13 @@
         "@babel/parser": "^7.27.7",
         "@babel/traverse": "^7.27.7",
         "ts-node": "^10.9.2",
-        "typescript": "^5.8.3"
+        "typescript": "^5.8.3",
+        "uglify-js": "^3.19.3"
     },
     "devDependencies": {
         "@babel/types": "^7.27.7",
         "@types/babel__generator": "^7.27.0",
-        "@types/babel__traverse": "^7.20.7"
+        "@types/babel__traverse": "^7.20.7",
+        "@types/uglify-js": "^3.17.5"
     }
 }

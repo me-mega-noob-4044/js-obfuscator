@@ -3,6 +3,7 @@ import fs from "fs";
 import { createInterface } from "readline";
 import obfuscator from "./core/obfuscator";
 import generator from "@babel/generator";
+import { minify } from "uglify-js";
 
 function Runner() {
     const rl = createInterface({
@@ -17,8 +18,11 @@ function Runner() {
         ast = obfuscator(ast);
 
         const codeResult = generator(ast, {}, code);
+        const minfiedCode = minify(codeResult.code, {
+            mangle: false
+        }); // Compress code to one line (don't really need a minifier for this)
 
-        fs.writeFileSync(`${__dirname}/../output/result.js`, codeResult.code);
+        fs.writeFileSync(`${__dirname}/../output/result.js`, minfiedCode.code);
 
         console.log("Successfully obfuscated the code");
 
