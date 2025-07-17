@@ -87,6 +87,10 @@ export default function obfuscator(ast: ParseResult<File>) {
         */
 
         StringLiteral(path) {
+            if (path.parent && t.isObjectProperty(path.parent) && path.parent.key == path.node) {
+                return;
+            }
+
             const encoded = encoder(path.node.value);
             const block = t.callExpression(t.identifier(nameMap.get("decoder")!), [t.stringLiteral(encoded)]);
 
